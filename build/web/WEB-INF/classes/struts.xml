@@ -1,0 +1,73 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- Configuration for the default package. -->
+    <package name="default" extends="struts-default">
+        <action name="" class="sangnv.actions.LoadAction">
+            <result name="success">index.jsp</result>
+        </action>
+        <action name="Load" class="sangnv.actions.LoadAction">
+            <result name="success">index.jsp</result>
+        </action>
+        <action name="SearchHotel" class="sangnv.actions.SearchHotelAction">
+            <result name="success">index.jsp</result>
+        </action>
+        <action name="ViewDetail" class="sangnv.actions.ViewDetailAction">
+            <result name="success">index.jsp</result>
+        </action>
+        <action name="AddCart" class="sangnv.actions.AddCartAction" method="addCart">
+            <result name="success" type="chain">ViewDetail</result>
+        </action>
+        <action name="RemoveCart" class="sangnv.actions.AddCartAction" method="removeCart">
+            <result name="success">viewcart.jsp</result>
+        </action>
+        <action name="UpdateCart" class="sangnv.actions.UpdateCartAction" method="updateCart">
+            <result name="success">viewcart.jsp</result>
+        </action>
+        <action name="ConfirmCart" class="sangnv.actions.ConfirmCartAction" method="confirmCart">
+            <result name="success" type="chain" >Load</result>
+            <result name="fail" >viewcart.jsp</result>
+        </action>
+        <action name="ViewHistory" class="sangnv.actions.ViewHistoryAction" method="viewHistory">
+            <result name="success">viewhistory.jsp</result>
+        </action>
+        <action name="SearchHistory" class="sangnv.actions.ViewHistoryAction" method="searchHistory">
+            <result name="success">viewhistory.jsp</result>
+        </action>
+        <action name="CancelBooking" class="sangnv.actions.CancelBookingAction" method="cancelBooking">
+            <result name="success" type="chain">ViewHistory</result>
+        </action>
+        <action name="ViewDetailBooking" class="sangnv.actions.ViewDetailBookingAction" method="viewDetail">
+            <result name="success">viewhistory.jsp</result>
+        </action>
+        <action name="Feedback" class="sangnv.actions.FeedbackAction">
+            <result name="success" type="chain">ViewHistory</result>
+        </action>
+        <action name="Login" class="sangnv.actions.LoginAction" method="login">
+            <result name="admin" type="chain">AdminLoad</result>
+            <result name="customer" type="chain">Load</result>
+            <result name="fail" type="chain">Load</result>
+        </action>
+        <action name="Register" class="sangnv.actions.RegisterAction">
+            <result name="success" type="chain">Load</result>
+        </action>
+        <action name="Logout" class="sangnv.actions.LoginAction" method="logout">
+            <result name="success" type="redirect">Load</result>
+        </action>
+        <action name="ApplyDiscount" class="sangnv.actions.ApplyDiscountAction">
+            <result name="success">viewcart.jsp</result>
+        </action>
+        <action name="AdminLoad" class="sangnv.actions.AdminLoadAction">
+            <result name="success">admin.jsp</result>
+        </action>
+        <action name="ConfirmMail" class="sangnv.actions.ConfirmMailAction" method="sendMail">
+            <result name="success">viewcart.jsp</result>
+        </action>
+        <action name="AcceptConfirm" class="sangnv.actions.ConfirmMailAction" method="acceptConfirm">
+            <result name="success" type="chain" >Load</result>
+            <result name="fail" >viewcart.jsp</result>
+        </action>
+    </package>
+</struts>
